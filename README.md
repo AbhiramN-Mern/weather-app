@@ -26,13 +26,16 @@ A simple mobile-friendly weather application that fetches weather information fr
 ## Setup
 
 ### 1. Clone the Repository
-
+```
 git clone <repository-url>
 cd weather-app
+```
 
 ## 2. Install Dependencies
 Ensure Node.js and npm are installed. Run the following command to install the required dependencies:
+```
 npm install
+```
 
 ## 3. Create .env File
 In the root of the project, create a .env file with the following content:
