@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Weather App</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/">Current Weather</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/historical">Historical Data</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <form method="POST" action="/current-weather" class="form-card">
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Select City</label>
+                        <select class="form-select" id="location" name="location" required>
+                            <option value="" selected disabled>Choose a city</option>
+                            <% cities.forEach(city => { %>
+                                <option value="<%= city %>"><%= city %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Get Weather</button>
+                </form>
+                
+                <% if (error) { %>
+                    <div class="alert alert-danger"><%= error %></div>
+                <% } %>
+
+                <% if (weather) { %>
+                    <div class="weather-card">
+                        <div class="weather-card-content">
+                            <div class="dropdown-select">Today <i class="fas fa-chevron-down ms-1"></i></div>
+                            <div class="temperature">
+                                <i class="fas fa-sun weather-icon"></i>
+                                <%= Math.round(weather.temperature) %><span class="degree">°</span>
+                            </div>
+                            <div class="weather-description"><%= weather.description %></div>
+                            <div class="location"><%= weather.location %></div>
+                            <div class="date"><%= new Date().toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }) %></div>
+                            
+                            <div class="weather-details">
+                                <div class="weather-details-item">
+                                    <span>Feels like</span>
+                                    <span class="value"><%= Math.round(weather.temperature) %>°</span>
+                                </div>
+                                <div class="weather-details-item">
+                                    <span>Sunset</span>
+                                    <span class="value">18:20</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="forecast-container">
+                        <div class="forecast-card-title">Hourly Forecast</div>
+                        <div class="forecast-hours">
+                            <div class="forecast-hour">
+                                <div class="time">Now</div>
+                                <div class="forecast-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div class="forecast-temp"><%= Math.round(weather.temperature) %>°</div>
+                            </div>
+                            <div class="forecast-hour">
+                                <div class="time">2 AM</div>
+                                <div class="forecast-icon">
+                                    <i class="fas fa-cloud"></i>
+                                </div>
+                                <div class="forecast-temp"><%= Math.round(weather.temperature - 1) %>°</div>
+                            </div>
+                            <div class="forecast-hour">
+                                <div class="time">3 AM</div>
+                                <div class="forecast-icon">
+                                    <i class="fas fa-cloud-sun"></i>
+                                </div>
+                                <div class="forecast-temp"><%= Math.round(weather.temperature - 2) %>°</div>
+                            </div>
+                            <div class="forecast-hour">
+                                <div class="time">4 AM</div>
+                                <div class="forecast-icon">
+                                    <i class="fas fa-cloud"></i>
+                                </div>
+                                <div class="forecast-temp"><%= Math.round(weather.temperature - 1) %>°</div>
+                            </div>
+                            <div class="forecast-hour">
+                                <div class="time">5 AM</div>
+                                <div class="forecast-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div class="forecast-temp"><%= Math.round(weather.temperature) %>°</div>
+                            </div>
+                            <div class="forecast-hour">
+                                <div class="time">6 AM</div>
+                                <div class="forecast-icon">
+                                    <i class="fas fa-cloud"></i>
+                                </div>
+                                <div class="forecast-temp"><%= Math.round(weather.temperature + 1) %>°</div>
+                            </div>
+                            <div class="forecast-hour">
+                                <div class="time">7 AM</div>
+                                <div class="forecast-icon">
+                                    <i class="fas fa-cloud-sun"></i>
+                                </div>
+                                <div class="forecast-temp"><%= Math.round(weather.temperature + 2) %>°</div>
+                            </div>
+                            <div class="forecast-hour">
+                                <div class="time">8 AM</div>
+                                <div class="forecast-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div class="forecast-temp"><%= Math.round(weather.temperature + 3) %>°</div>
+                            </div>
+                            <div class="forecast-hour">
+                                <div class="time">9 AM</div>
+                                <div class="forecast-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div class="forecast-temp"><%= Math.round(weather.temperature + 4) %>°</div>
+                            </div>
+                            <div class="forecast-hour">
+                                <div class="time">10 AM</div>
+                                <div class="forecast-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div class="forecast-temp"><%= Math.round(weather.temperature + 5) %>°</div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+            
+            <div class="col-md-6">
+              
+                
+                <div class="form-card">
+                    <h3 class="mb-3 text-orange">Weather Details</h3>
+                    <% if (weather) { %>
+                        <div class="row mb-2">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <span class="d-block text-muted">Humidity</span>
+                                    <span class="fw-bold"><%= weather.humidity %>%</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <span class="d-block text-muted">Wind Speed</span>
+                                    <span class="fw-bold"><%= weather.windSpeed %> m/s</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <span class="d-block text-muted">Pressure</span>
+                                    <span class="fw-bold"><%= weather.pressure %> hPa</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <span class="d-block text-muted">Description</span>
+                                    <span class="fw-bold text-capitalize"><%= weather.description %></span>
+                                </div>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <p>Select a city to see weather details</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
