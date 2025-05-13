@@ -47,7 +47,10 @@ OPENWEATHERMAP_API_KEY=YOUR_API_KEY_HERE
 Replace YOUR_API_KEY_HERE with your actual OpenWeatherMap API key.
  The MONGODB_URI is set for a local MongoDB instance. If using a cloud MongoDB service like MongoDB Atlas, replace it with the provided connection string.
 ## 4. Start the Application
-Run the application with: node app
+Run the application with:
+```
+node app
+```
 The app will start on http://localhost:3001.
 
 ## 5. Access the Application
