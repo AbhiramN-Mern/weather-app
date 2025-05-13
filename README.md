@@ -63,6 +63,9 @@ GET /weather/history: Retrieve historical weather data with filters for location
 Validation Rules
 Date Range: The 'From' and 'To' date range cannot exceed 30 days.
 Location: Valid locations are Delhi, Moscow, Paris, New York, Sydney, and Riyadh.
+![Image](https://github.com/user-attachments/assets/27b41356-9abd-4f06-8ca9-103d437da704)
+
+![Image](https://github.com/user-attachments/assets/dd268c35-16cd-40ed-8fc7-20136631a6a2)
 Folder Structure
 /weather-app
 ```
